@@ -18,13 +18,13 @@ Thanks to https://github.com/leoek for creating the original one.
 ## Installation
 
 ```sh
-yarn add fetch-to-curl
+deno add @viktor/fetch-to-curl
 ```
 
 or
 
 ```sh
-npm install fetch-to-curl
+npx jsr add @viktor/fetch-to-curl
 ```
 
 ## Usage
