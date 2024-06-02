@@ -1,5 +1,7 @@
 # @viktor/fetch-to-curl
 
+Generate curl requests with the inputs you would usually use for the JS fetch.
+
 This is a fork of [this other project](https://github.com/leoek/fetch-to-curl).
 
 The original was written in Javascript, had a manually maintained and outdated
