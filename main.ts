@@ -1,4 +1,4 @@
-export const generateMethod = (options: RequestInit) => {
+export function generateMethod(options: RequestInit): string {
   const method = options.method;
   if (!method) return "";
   const type: Record<string, string> = {
@@ -13,10 +13,11 @@ export const generateMethod = (options: RequestInit) => {
   return type[method.toUpperCase()] || "";
 };
 
-const getHeaderString = (name: string, val: string) =>
-  ` -H "${name}: ${`${val}`.replace(/(\\|")/g, "\\$1")}"`;
+function getHeaderString(name: string, val: string): string {
+  return ` -H "${name}: ${`${val}`.replace(/(\\|")/g, "\\$1")}"`;
+}
 
-export const generateHeader = (init?: RequestInit | undefined) => {
+export function generateHeader(init?: RequestInit | undefined): { params: string, isEncode: boolean } {
   const headers = init?.headers;
   let isEncode = false;
   let headerParam = "";
@@ -51,7 +52,7 @@ export function escapeBody(body: unknown) {
   return body.replace(/'/g, `'\\''`);
 }
 
-export function generateBody(body?: unknown) {
+export function generateBody(body?: unknown): string {
   if (!body) return "";
   if (typeof body === "object") {
     return ` --data-binary '${escapeBody(JSON.stringify(body))}'`;
@@ -59,7 +60,7 @@ export function generateBody(body?: unknown) {
   return ` --data-binary '${escapeBody(body)}'`;
 }
 
-export function generateCompress(isEncode?: boolean) {
+export function generateCompress(isEncode?: boolean): string {
   return isEncode ? " --compressed" : "";
 }
 
@@ -70,10 +71,10 @@ export function generateCompress(isEncode?: boolean) {
  * @param init RequestInit | undefined
  * @returns string
  */
-export const fetchToCurl = (
+export function fetchToCurl(
   input: RequestInfo | URL,
   init?: RequestInit | undefined,
-) => {
+): string {
   const canUseInputDirectly = typeof input === "string" || input instanceof URL;
   const url = canUseInputDirectly ? input : input.url;
   const options = init ?? {};
