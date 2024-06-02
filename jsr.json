@@ -1,5 +1,5 @@
 {
   "name": "@viktor/fetch-to-curl",
   "version": "0.1.0",
-  "exports": "./main.ts"
+  "exports": "./mod.ts"
 }

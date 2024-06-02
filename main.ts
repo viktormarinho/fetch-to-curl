@@ -63,6 +63,13 @@ export function generateCompress(isEncode?: boolean) {
   return isEncode ? " --compressed" : "";
 }
 
+/**
+ * Receives the exact same parameters as the fetch standand
+ * then returns a curl string equivalent to that request.
+ * @param input RequestInfo | URL
+ * @param init RequestInit | undefined
+ * @returns string
+ */
 export const fetchToCurl = (
   input: RequestInfo | URL,
   init?: RequestInit | undefined,
@@ -76,5 +83,3 @@ export const fetchToCurl = (
     generateBody(body)
   }${generateCompress(headers.isEncode)}`;
 };
-
-export default fetchToCurl;
